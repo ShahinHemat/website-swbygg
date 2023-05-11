@@ -4,15 +4,20 @@ import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
 import { services, ansatte } from '../constants';
-import { fadeIn, textVariant } from '../utils/motion';
+import { fadeIn, fadeInTwo, textVariant, textVariantTwo } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
 /* import { martin, ragnar } from '../assets'; */
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 const ServiceCard = ({ index, title, icon }) => {
+
+  const isMobile = useMediaQuery('(max-width:680px)');
+
   return (
     <Tilt className='xs:w-[250px] w-full'>
       <motion.div
-        variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}
+        variants={isMobile? fadeInTwo('right', 'spring', 0.5 * index, 0.75) : fadeIn('right', 'spring', 0.5 * index, 0.75)}
         className='w-full p-[1px] rounded-[20px] shadow-card'>
         <div
           options={{
@@ -33,15 +38,20 @@ const ServiceCard = ({ index, title, icon }) => {
 
 const About = () => {
 
+  const isMobile = useMediaQuery('(max-width:680px)');
+
   return (
     <>
-      <motion.div variants={textVariant()}>
+    
+      <motion.div 
+      variants={isMobile ? textVariantTwo() : textVariant()}
+      >
         {/* <p className={styles.sectionSubText}>Om Oss</p> */}
         <h2 className={styles.sectionHeadText}>Om Oss</h2>
       </motion.div>
 
       <motion.p
-        variants={fadeIn('', '', 0.1, 1)}
+        variants={ isMobile ? fadeInTwo('', '', 0.1, 1) : fadeIn('', '', 0.1, 1)}
         className='mt-4 text-swBygg-dark text-[17px] max-w-3xl leading-[30px]'
       >
 
@@ -57,7 +67,7 @@ const About = () => {
         <div className='cursor-pointer' /* onClick={scrollToPosition} */ style={{ textAlign: 'center', textDecoration: 'underline' }}> <a href='#contact' title='Klikk for å gå til kontaktskjema'>Har du et prosjekt er vi alltid interessert i å høre om dette!</a></div>
       </motion.p>
 
-      <motion.div variants={textVariant()} style={{ marginTop: '40px', }}>
+      <motion.div variants={ isMobile ? textVariantTwo() : textVariant()} style={{ marginTop: '40px', }}>
         {/* <p className={styles.sectionSubText}>Om Oss</p> */}
         <h2 className={styles.sectionHeadText}>Vårt Team</h2>
       </motion.div>
@@ -75,7 +85,7 @@ const About = () => {
       </motion.div>
 
       <motion.p
-        variants={fadeIn('', '', 0.1, 6)}
+        variants={ isMobile ? fadeInTwo('', '', 0.1, 6) : fadeIn('', '', 0.1, 6)}
         className='mt-8 text-swBygg-dark text-[17px] max-w-3xl leading-[30px]'
       >
 
@@ -83,13 +93,13 @@ const About = () => {
         
       </motion.p>
 
-      <motion.div variants={textVariant()} style={{ marginTop: '40px' }}>
+      <motion.div variants={ isMobile ? textVariantTwo() : textVariant()} style={{ marginTop: '40px' }}>
         <h2 className={styles.sectionHeadText}>Vårt Fokus</h2>
         {/* <p className={styles.sectionSWLowText} style={{color: "#5a4a41"}}>#Pålitelighet</p> */}
       </motion.div>
 
       <motion.p
-        variants={fadeIn('', '', 0.1, 1)}
+        variants={isMobile ? fadeInTwo('', '', 0.1, 1) : fadeIn('', '', 0.1, 1)}
         className='mt-4 text-swBygg-dark text-[17px] max-w-3xl leading-[30px]'
       >
 
@@ -102,7 +112,7 @@ const About = () => {
         <a href='#contact' title='Klikk for å gå til kontaktskjema'>kontakt med oss.</a></div> Vi er alltid interessert i å høre om ditt prosjekt!
       </motion.p>
 
-      <motion.div variants={textVariant()} style={{ marginTop: '40px', }}>
+      <motion.div variants={ isMobile ? textVariantTwo() : textVariant()} style={{ marginTop: '40px', }}>
         <p className={styles.sectionSWText}> <b>*Noen av våre samarbeidspartnere</b></p>
         {/* <h2 className={styles.sectionHeadText}>Noen av våre</h2> */}
       </motion.div>
