@@ -6,7 +6,9 @@ import 'react-vertical-timeline-component/style.min.css';
 import { styles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { textVariant, fadeIn } from "../utils/motion";
+import { textVariant, textVariantTwo, fadeIn, fadeInTwo } from "../utils/motion";
+
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
@@ -40,14 +42,16 @@ const ExperienceCard = ({ experience }) => (
 
 const Experience = () => {
 
+  const isMobile = useMediaQuery('(max-width:680px)');
+
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={isMobile? textVariantTwo() : textVariant()}>
         <h2 className={styles.sectionHeadText}>Våre Tjenester</h2>
       </motion.div>
 
       <motion.p
-        variants={fadeIn('', '', 0.1, 1)}
+        variants={isMobile ? fadeInTwo('', '', 0.1, 1) : fadeIn('', '', 0.1, 1)}
         className='mt-4 text-swBygg-dark text-[17px] max-w-3xl leading-[30px]'
       >
         &nbsp;&nbsp;<b>Vi tilbyr et variert utvalg av tjenester, inkludert nybygg. </b>Vi utfører det meste av byggningsmessige arbeider og
